@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import PageHero from '../components/shared/PageHero';
 import AccordionFAQ from '../components/shared/AccordionFAQ';
-import MailingForm from '../components/MailingForm';
+import FreeDownloadSection from '../components/FreeDownloadSection';
 
 const tiers = [
   {
@@ -173,26 +173,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Free plan mailing signup */}
-      <section id="free-email" className="w-full py-16 border-t border-white/[0.04]">
-        <div className="section-container max-w-2xl">
-          <div className="card-bezel">
-            <div className="card-bezel-inner text-center py-10 flex flex-col items-center gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-accent/[0.08] border border-accent/20 flex items-center justify-center">
-                <Icon icon="solar:letter-bold-duotone" className="w-6 h-6 text-accent-bright" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-snow mb-2">무료 프레임워크 패키지 받기</h3>
-                <p className="text-silver text-[13px] leading-[1.8]">
-                  이메일 주소만 입력하시면 사고 프레임워크 프롬프트 5종을 즉시 발송해 드립니다.<br />
-                  신규 프레임워크 업데이트도 가장 먼저 받아보실 수 있습니다.
-                </p>
-              </div>
-              <MailingForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <FreeDownloadSection />
 
       {/* Feature matrix */}
       <section className="w-full py-24 border-t border-white/[0.04]">
