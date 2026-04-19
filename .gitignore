@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Internal docs (local only — not for public repo)
+docs/
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
