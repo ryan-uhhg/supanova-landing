@@ -1,15 +1,6 @@
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
-// EmailOctopus 연동 설정
-// 가입 후 아래 값을 채워넣으면 바로 작동합니다
-// https://emailoctopus.com → Forms → Embed → API endpoint 복사
-const EMAILOCTOPUS_LIST_ID = '7f4cff3c-3bba-11f1-aa4b-f33e051b0fe6';
-const EMAILOCTOPUS_API_URL = `https://emailoctopus.com/api/1.6/lists/${EMAILOCTOPUS_LIST_ID}/contacts`;
-
-// 연동 전 임시로 mailto 폴백 사용 여부
-const USE_MAILTO_FALLBACK = false;
-
 export default function MailingForm({ compact = false }) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle | loading | success | error
@@ -23,32 +14,20 @@ export default function MailingForm({ compact = false }) {
       return;
     }
 
-    // EmailOctopus 미연동 시 mailto 폴백
-    if (USE_MAILTO_FALLBACK) {
-      window.location.href = `mailto:createnova.help@gmail.com?subject=뉴스레터 구독 신청&body=구독 신청 이메일: ${email}`;
-      setStatus('success');
-      return;
-    }
-
     setStatus('loading');
     try {
-      const res = await fetch(EMAILOCTOPUS_API_URL, {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          api_key: import.meta.env.VITE_EMAILOCTOPUS_API_KEY,
-          email_address: email,
-          fields: { Source: 'landing-free-plan' },
-          tags: ['earlybird', 'landing'],
-          status: 'SUBSCRIBED',
-        }),
+        body: JSON.stringify({ email }),
       });
       const data = await res.json();
-      if (res.ok) {
+
+      if (res.ok && data.success) {
         setStatus('success');
         setEmail('');
       } else {
-        setErrorMsg(data.error?.message || '오류가 발생했습니다. 다시 시도해 주세요.');
+        setErrorMsg(data.error || '오류가 발생했습니다. 다시 시도해 주세요.');
         setStatus('error');
       }
     } catch {
