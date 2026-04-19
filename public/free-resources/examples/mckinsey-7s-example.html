@@ -3,432 +3,274 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
-<title>McKinsey 7S 분석 — Createnova</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
+<title>McKinsey 7S 분석 — Createnova 예시</title>
+<script>
+tailwind.config={theme:{extend:{fontFamily:{sans:['Pretendard','system-ui','sans-serif'],display:['Outfit','Pretendard','sans-serif']},colors:{navy:{900:'#0f2167',800:'#162b7a'},gold:{500:'#c9a84c',400:'#d4b96a'}}}}}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#fff;color:#1a1a2e;font-family:'Pretendard',sans-serif;overflow:hidden}
-.wrap{width:1280px;height:720px;position:relative;margin:0 auto}
-.slide{width:1280px;height:720px;position:absolute;top:0;left:0;display:none;padding:0;flex-direction:column}
-.slide.active{display:flex;animation:fadeUp .4s cubic-bezier(.16,1,.3,1)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-/* 네이비 코퍼레이트 — 좌측 사이드바 레이아웃 */
-.layout{display:flex;height:100%}
-.sidebar{width:280px;background:#0f2167;display:flex;flex-direction:column;justify-content:space-between;padding:48px 32px;flex-shrink:0}
-.sidebar .logo{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.sidebar .slide-label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#c9a84c;margin-bottom:12px}
-.sidebar h2{font-size:22px;font-weight:700;color:#fff;line-height:1.3}
-.sidebar .meta{font-size:12px;color:rgba(255,255,255,.4);margin-top:auto}
-.main{flex:1;padding:48px 56px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.gold{color:#c9a84c}
-.navy{color:#0f2167}
-h1{font-size:44px;font-weight:800;line-height:1.15;letter-spacing:-.02em;color:#0f2167}
-h2.main-h{font-size:30px;font-weight:700;color:#0f2167;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid #e8ecf8}
-h3{font-size:17px;font-weight:700;color:#0f2167}
-.body{font-size:14px;line-height:1.7;color:#555}
-.accent-line{width:48px;height:3px;background:#c9a84c;margin:16px 0}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.card{background:#f8f9fe;border:1px solid #e2e6f5;border-radius:12px;padding:20px;border-top:3px solid #0f2167}
-.card.gold-top{border-top-color:#c9a84c}
-.card.red-top{border-top-color:#dc2626}
-.tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c9a84c;margin-bottom:8px}
-ul{list-style:none;margin-top:10px}
-ul li{font-size:13px;color:#555;padding:4px 0;border-bottom:1px solid #eee;display:flex;gap:6px}
-ul li::before{content:'▸';color:#0f2167;flex-shrink:0;font-size:11px;margin-top:2px}
-.chip{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;margin-bottom:10px}
-.chip-green{background:#dcfce7;color:#166534}
-.chip-yellow{background:#fef9c3;color:#854d0e}
-.chip-red{background:#fee2e2;color:#991b1b}
-table{width:100%;border-collapse:collapse;font-size:11px}
-th,td{border:1px solid #e2e6f5;padding:7px 10px;text-align:center}
-th{background:#0f2167;color:#fff;font-weight:600}
-td.miss{background:#fee2e2;color:#dc2626;font-weight:700}
-td.ok{background:#dcfce7;color:#166534;font-weight:700}
-td.mid{background:#fef9c3;color:#854d0e;font-weight:700}
-td.self{background:#e8ecf8;color:#0f2167}
-.timeline{display:flex;margin-top:20px;position:relative}
-.tl-item{flex:1;padding:0 12px;position:relative}
-.tl-line{position:absolute;top:20px;left:0;right:0;height:2px;background:#e2e6f5}
-.tl-item:first-child .tl-line{left:50%}
-.tl-item:last-child .tl-line{right:50%}
-.tl-dot{width:12px;height:12px;border-radius:50%;background:#0f2167;border:2px solid #fff;box-shadow:0 0 0 2px #0f2167;margin:14px auto 14px;position:relative;z-index:1}
-.tl-dot.inactive{background:#e2e6f5;box-shadow:0 0 0 2px #e2e6f5}
-.tl-phase{font-size:10px;font-weight:700;letter-spacing:.06em;color:#c9a84c;text-align:center;text-transform:uppercase;margin-bottom:6px}
-.tl-body{font-size:11px;color:#555;text-align:center;line-height:1.5}
-.brand{position:fixed;top:18px;right:24px;font-size:11px;color:#A1A1AA;letter-spacing:.05em;z-index:200}
-.slide-num{position:fixed;bottom:22px;right:24px;font-size:11px;color:#A1A1AA;z-index:200}
-.prog-wrap{position:fixed;bottom:0;left:0;width:100%;height:3px;background:#e8ecf8;z-index:200}
-.prog{height:3px;background:#0f2167;transition:width .3s}
-.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:200}
-.nav button{background:#0f2167;border:none;color:#fff;width:36px;height:30px;border-radius:6px;cursor:pointer;font-size:14px}
-.nav button:hover{background:#c9a84c}
-.cta-btn{display:inline-block;background:#0f2167;color:#fff;font-size:14px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;margin-top:20px}
-.cta-btn:hover{background:#c9a84c}
-@media print{body{overflow:auto}.slide{position:relative;display:flex!important;page-break-after:always}.brand,.nav,.prog-wrap,.slide-num{display:none}}
+body{background:#f4f4f5;font-family:'Pretendard',sans-serif;overflow:hidden;word-break:keep-all}
+.wrap{width:1280px;height:720px;position:relative;margin:40px auto 0;background:#fff;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.slide{width:1280px;height:720px;position:absolute;top:0;left:0;display:none;opacity:0}
+.slide.active{display:flex;animation:fadeUp .35s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.nav-controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:50}
+.nav-btn{width:36px;height:36px;border-radius:8px;border:1px solid #e4e4e7;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#71717a;font-size:14px;transition:all .15s}
+.nav-btn:hover{background:#f4f4f5;color:#18181b}
+.slide-num{position:fixed;bottom:24px;right:32px;font-size:11px;color:#a1a1aa;z-index:50;font-variant-numeric:tabular-nums}
+.progress{position:fixed;bottom:0;left:0;height:2px;background:#c9a84c;transition:width .3s;z-index:50}
+.brand{position:fixed;top:16px;right:24px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#a1a1aa;z-index:50}
+@media print{body{background:#fff!important}.wrap{margin:0!important;box-shadow:none!important}.slide{position:relative!important;display:flex!important;opacity:1!important;page-break-after:always;print-color-adjust:exact;-webkit-print-color-adjust:exact}.nav-controls,.slide-num,.progress,.brand{display:none!important}}
 </style>
 </head>
 <body>
 <div class="brand">Createnova</div>
-<div class="slide-num" id="snum">01 / 10</div>
-<div class="prog-wrap"><div class="prog" id="prog" style="width:10%"></div></div>
-<div class="nav"><button onclick="go(-1)">←</button><button onclick="go(1)">→</button></div>
 <div class="wrap">
-<!-- S1: 타이틀 -->
-<div class="slide active">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Strategy Analysis</div>
-        <h2>McKinsey<br>7S Framework</h2>
-      </div>
-      <div class="meta">조직 정렬 진단 보고서<br>2026년 · Createnova 제작</div>
-    </div>
-    <div class="main" style="justify-content:center">
-      <div class="tag">Organizational Alignment</div>
-      <h1>Createnova<br><span class="gold">McKinsey 7S</span><br>분석 보고서</h1>
-      <div class="accent-line"></div>
-      <p class="body" style="max-width:480px">조직의 7가지 핵심 요소가 얼마나 정렬되어 있는지 진단하고, 전략 실행력을 높이는 권고안을 제시합니다.</p>
-    </div>
-  </div>
+<!-- S1: Hero Title -->
+<div class="slide active" data-slide="1">
+<div class="flex flex-col items-center justify-center w-full h-full px-16 text-center">
+<p class="text-[10px] font-bold uppercase tracking-[.2em] text-gold-500 mb-6">Strategic Framework Analysis</p>
+<h1 class="font-display text-6xl font-extrabold text-navy-900 tracking-tight leading-tight mb-4">McKinsey 7S</h1>
+<p class="text-xl text-zinc-500 leading-relaxed max-w-lg">조직 내부 7개 요소의 정렬 상태를 진단하고<br>전략적 개선 방향을 도출합니다</p>
+<div class="w-12 h-0.5 bg-gold-500 mt-8"></div>
+<p class="text-xs text-zinc-400 mt-6">2026.04 — Createnova Demo</p>
+</div></div>
+<!-- S2: Exec Summary (Asymmetric Split) -->
+<div class="slide" data-slide="2">
+<div class="flex h-full">
+<div class="w-[40%] bg-navy-900 flex flex-col justify-center px-12 py-10">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-4">Executive Summary</p>
+<h2 class="text-2xl font-bold text-white leading-tight mb-6">조직 정렬도 진단 결과</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-3"><div class="w-1 bg-gold-500 rounded-full flex-shrink-0" style="min-height:40px"></div><p class="text-sm text-zinc-300 leading-relaxed">전략과 구조의 정렬은 양호하나, 시스템과 역량 간 격차가 존재합니다</p></div>
+<div class="flex items-start gap-3"><div class="w-1 bg-gold-500 rounded-full flex-shrink-0" style="min-height:40px"></div><p class="text-sm text-zinc-300 leading-relaxed">공유 가치가 명확히 정의되어 있으며, 조직 문화의 기반으로 작동합니다</p></div>
+<div class="flex items-start gap-3"><div class="w-1 bg-gold-500 rounded-full flex-shrink-0" style="min-height:40px"></div><p class="text-sm text-zinc-300 leading-relaxed">인력 육성 체계 강화와 시스템 자동화가 핵심 개선 과제입니다</p></div>
+</div></div>
+<div class="w-[60%] flex flex-col justify-center px-12 py-10">
+<h3 class="text-lg font-semibold text-navy-900 mb-6">정렬 수준 요약</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Strategy</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:88%"></div></div><span class="text-[10px] font-bold text-emerald-600 w-8">강</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Structure</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:82%"></div></div><span class="text-[10px] font-bold text-emerald-600 w-8">강</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Systems</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500 rounded-full" style="width:58%"></div></div><span class="text-[10px] font-bold text-amber-600 w-8">중</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Skills</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500 rounded-full" style="width:62%"></div></div><span class="text-[10px] font-bold text-amber-600 w-8">중</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Staff</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-red-400 rounded-full" style="width:45%"></div></div><span class="text-[10px] font-bold text-red-500 w-8">약</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Style</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:75%"></div></div><span class="text-[10px] font-bold text-emerald-600 w-8">강</span></div>
+<div class="flex items-center gap-3"><span class="text-xs font-semibold text-zinc-500 w-28 text-right">Shared Values</span><div class="flex-1 h-2 bg-zinc-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:90%"></div></div><span class="text-[10px] font-bold text-emerald-600 w-8">강</span></div>
 </div>
-
-<!-- S2: Executive Summary -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Executive Summary</div>
-        <h2>정렬 수준:<br><span style="color:#c9a84c">중간~높음</span></h2>
-      </div>
-      <div class="meta">02 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">핵심 발견 3가지</h2>
-      <div class="grid3">
-        <div class="card gold-top">
-          <div class="tag">Finding 01</div>
-          <h3>전략·시스템 정렬 우수</h3>
-          <p class="body" style="margin-top:8px">AI-first 전략과 서버리스 스택이 긴밀하게 정렬. 속도와 비용 효율성 확보.</p>
-        </div>
-        <div class="card red-top">
-          <div class="tag">Finding 02</div>
-          <h3>Structure 취약</h3>
-          <p class="body" style="margin-top:8px">1인 운영 구조가 전략 규모와 충돌. 핵심인력 집중 리스크 존재.</p>
-        </div>
-        <div class="card gold-top">
-          <div class="tag">Finding 03</div>
-          <h3>Shared Values 견고</h3>
-          <p class="body" style="margin-top:8px">"데이터로 더 나은 결정"이라는 가치가 의사결정 전반을 일관성 있게 견인.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="mt-6 p-3 bg-zinc-50 rounded-lg border border-zinc-100">
+<p class="text-[11px] text-zinc-600"><iconify-icon icon="solar:info-circle-bold" width="14" class="text-navy-900 align-middle mr-1"></iconify-icon>전체 정렬 수준: <b class="text-navy-900">중상</b> — Hard S 견고, Soft S 보강 필요</p>
+</div></div></div></div>
+<!-- S3: 7S Diagram (Full Bleed) -->
+<div class="slide" data-slide="3">
+<div class="flex flex-col items-center justify-center w-full h-full px-8">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-2">7S Framework Overview</p>
+<svg viewBox="0 0 600 440" width="540" height="400">
+<defs><filter id="g"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<line x1="300" y1="220" x2="300" y2="60" stroke="#c9a84c" stroke-width="1" opacity=".3"/>
+<line x1="300" y1="220" x2="150" y2="120" stroke="#c9a84c" stroke-width="1" opacity=".3"/>
+<line x1="300" y1="220" x2="450" y2="120" stroke="#eab308" stroke-width="1.5" opacity=".5"/>
+<line x1="300" y1="220" x2="130" y2="300" stroke="#eab308" stroke-width="1.5" opacity=".5"/>
+<line x1="300" y1="220" x2="470" y2="300" stroke="#ef4444" stroke-width="1.5" opacity=".6"/>
+<line x1="300" y1="220" x2="190" y2="390" stroke="#c9a84c" stroke-width="1" opacity=".3"/>
+<circle cx="300" cy="220" r="50" fill="#0f2167" stroke="#c9a84c" stroke-width="2" filter="url(#g)"/>
+<text x="300" y="216" text-anchor="middle" fill="#c9a84c" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Shared</text>
+<text x="300" y="230" text-anchor="middle" fill="#c9a84c" font-family="Outfit,sans-serif" font-size="11" font-weight="700">Values</text>
+<rect x="260" y="30" width="80" height="40" rx="8" fill="#fff" stroke="#0f2167" stroke-width="1.5"/><text x="300" y="54" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Strategy</text><circle cx="328" cy="42" r="4" fill="#22c55e"/>
+<rect x="110" y="100" width="80" height="40" rx="8" fill="#fff" stroke="#0f2167" stroke-width="1.5"/><text x="150" y="124" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Structure</text><circle cx="178" cy="112" r="4" fill="#22c55e"/>
+<rect x="410" y="100" width="80" height="40" rx="8" fill="#fff" stroke="#eab308" stroke-width="1.5"/><text x="450" y="124" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Systems</text><circle cx="478" cy="112" r="4" fill="#eab308"/>
+<rect x="90" y="280" width="80" height="40" rx="8" fill="#fff" stroke="#eab308" stroke-width="1.5"/><text x="130" y="304" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Skills</text><circle cx="158" cy="292" r="4" fill="#eab308"/>
+<rect x="430" y="280" width="80" height="40" rx="8" fill="#fff" stroke="#ef4444" stroke-width="1.5"/><text x="470" y="304" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Staff</text><circle cx="498" cy="292" r="4" fill="#ef4444"/>
+<rect x="150" y="370" width="80" height="40" rx="8" fill="#fff" stroke="#0f2167" stroke-width="1.5"/><text x="190" y="394" text-anchor="middle" fill="#0f2167" font-family="Pretendard" font-size="12" font-weight="600">Style</text><circle cx="218" cy="382" r="4" fill="#22c55e"/>
+<circle cx="80" cy="430" r="4" fill="#22c55e"/><text x="90" y="434" fill="#71717a" font-family="Pretendard" font-size="10">강한 정렬</text>
+<circle cx="170" cy="430" r="4" fill="#eab308"/><text x="180" y="434" fill="#71717a" font-family="Pretendard" font-size="10">부분 정렬</text>
+<circle cx="260" cy="430" r="4" fill="#ef4444"/><text x="270" y="434" fill="#71717a" font-family="Pretendard" font-size="10">개선 필요</text>
+</svg></div></div>
+<!-- S4: Hard S (Left Sidebar + Content) -->
+<div class="slide" data-slide="4">
+<div class="flex h-full">
+<div class="w-[240px] bg-navy-900 flex flex-col px-8 py-10 flex-shrink-0">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-3">Hard Elements</p>
+<h2 class="text-xl font-bold text-white leading-tight mb-4">Strategy<br>Structure<br>Systems</h2>
+<p class="text-[10px] text-zinc-400 mt-auto">직접 관리 가능한 구조적 요소</p>
 </div>
-
-<!-- S3: 7S 다이어그램 -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Framework Overview</div>
-        <h2>7S<br>전체 조망</h2>
-        <div style="margin-top:20px;font-size:12px;color:rgba(255,255,255,.6)">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:10px;height:10px;border-radius:50%;background:#4ade80;display:inline-block"></span>강한 정렬</div>
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px"><span style="width:10px;height:10px;border-radius:50%;background:#facc15;display:inline-block"></span>부분 정렬</div>
-          <div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;border-radius:50%;background:#f87171;display:inline-block"></span>불일치</div>
-        </div>
-      </div>
-      <div class="meta">03 / 10</div>
-    </div>
-    <div class="main" style="align-items:center">
-      <svg viewBox="0 0 580 460" width="580" height="460">
-        <circle cx="290" cy="230" r="60" fill="#e8ecf8" stroke="#0f2167" stroke-width="2.5"/>
-        <text x="290" y="225" text-anchor="middle" font-size="14" font-family="Pretendard" fill="#0f2167" font-weight="800">Shared</text>
-        <text x="290" y="243" text-anchor="middle" font-size="14" font-family="Pretendard" fill="#0f2167" font-weight="800">Values</text>
-        <circle cx="290" cy="60" r="44" fill="#fff" stroke="#4ade80" stroke-width="2.5"/>
-        <text x="290" y="56" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Strategy</text>
-        <text x="290" y="72" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#c9a84c">● 강함</text>
-        <circle cx="480" cy="135" r="44" fill="#fff" stroke="#4ade80" stroke-width="2.5"/>
-        <text x="480" y="131" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Systems</text>
-        <text x="480" y="147" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#c9a84c">● 강함</text>
-        <circle cx="480" cy="325" r="44" fill="#fff" stroke="#facc15" stroke-width="2.5"/>
-        <text x="480" y="321" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Skills</text>
-        <text x="480" y="337" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#854d0e">◐ 부분</text>
-        <circle cx="290" cy="400" r="44" fill="#fff" stroke="#facc15" stroke-width="2.5"/>
-        <text x="290" y="396" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Staff</text>
-        <text x="290" y="412" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#854d0e">◐ 부분</text>
-        <circle cx="100" cy="325" r="44" fill="#fff" stroke="#f87171" stroke-width="2.5" stroke-dasharray="6"/>
-        <text x="100" y="321" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Structure</text>
-        <text x="100" y="337" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#dc2626">○ 불일치</text>
-        <circle cx="100" cy="135" r="44" fill="#fff" stroke="#4ade80" stroke-width="2.5"/>
-        <text x="100" y="131" text-anchor="middle" font-size="13" font-family="Pretendard" fill="#0f2167" font-weight="700">Style</text>
-        <text x="100" y="147" text-anchor="middle" font-size="11" font-family="Pretendard" fill="#c9a84c">● 강함</text>
-        <line x1="290" y1="170" x2="290" y2="104" stroke="#4ade80" stroke-width="2"/>
-        <line x1="331" y1="197" x2="436" y2="153" stroke="#4ade80" stroke-width="2"/>
-        <line x1="340" y1="260" x2="436" y2="305" stroke="#facc15" stroke-width="2"/>
-        <line x1="315" y1="288" x2="300" y2="356" stroke="#facc15" stroke-width="2"/>
-        <line x1="249" y1="280" x2="144" y2="310" stroke="#f87171" stroke-width="2" stroke-dasharray="6"/>
-        <line x1="246" y1="195" x2="144" y2="157" stroke="#4ade80" stroke-width="2"/>
-      </svg>
-    </div>
-  </div>
+<div class="flex-1 px-10 py-8 flex flex-col justify-center gap-4">
+<div class="flex gap-4 p-4 rounded-xl border border-zinc-100">
+<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0"><iconify-icon icon="solar:target-bold" width="20" class="text-emerald-600"></iconify-icon></div>
+<div><div class="flex items-center gap-2 mb-1"><h3 class="text-sm font-bold text-navy-900">Strategy</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">강함</span></div>
+<p class="text-xs text-zinc-500 leading-relaxed">명확한 비전과 3개년 전략 로드맵이 수립되어 있으며, 분기별 KPI 리뷰를 통해 전략 실행을 추적합니다. 경쟁 우위는 기술 혁신과 고객 경험에 집중됩니다.</p></div></div>
+<div class="flex gap-4 p-4 rounded-xl border border-zinc-100">
+<div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0"><iconify-icon icon="solar:buildings-bold" width="20" class="text-emerald-600"></iconify-icon></div>
+<div><div class="flex items-center gap-2 mb-1"><h3 class="text-sm font-bold text-navy-900">Structure</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">강함</span></div>
+<p class="text-xs text-zinc-500 leading-relaxed">매트릭스 조직 구조로 기능별/프로젝트별 이중 보고 체계 운영. 의사결정은 분산되어 있으나 핵심 결정은 경영진 합의를 거칩니다.</p></div></div>
+<div class="flex gap-4 p-4 rounded-xl border border-amber-100 bg-amber-50/20">
+<div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0"><iconify-icon icon="solar:settings-bold" width="20" class="text-amber-600"></iconify-icon></div>
+<div><div class="flex items-center gap-2 mb-1"><h3 class="text-sm font-bold text-navy-900">Systems</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700">보통</span></div>
+<p class="text-xs text-zinc-500 leading-relaxed">핵심 프로세스는 문서화되어 있으나 자동화 수준이 낮습니다. 데이터가 부서별로 분산되어 통합 분석에 병목이 발생합니다.</p></div></div>
+</div></div></div>
+<!-- S5: Soft S (2x2 Cards) -->
+<div class="slide" data-slide="5">
+<div class="flex flex-col h-full px-12 py-10">
+<div class="flex items-center gap-3 mb-4"><div class="w-8 h-0.5 bg-gold-500"></div><p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500">Soft Elements</p></div>
+<h2 class="text-2xl font-bold text-navy-900 mb-5">문화적 요소 진단</h2>
+<div class="grid grid-cols-2 gap-4 flex-1">
+<div class="p-5 rounded-xl border border-zinc-100"><div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded bg-amber-50 flex items-center justify-center"><iconify-icon icon="solar:diploma-bold" width="14" class="text-amber-600"></iconify-icon></div><h3 class="text-sm font-bold text-navy-900">Skills</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700 ml-auto">보통</span></div><p class="text-xs text-zinc-500 leading-relaxed">핵심 역량은 업계 평균 이상이나 AI/데이터 분석 등 미래 역량 육성이 부재합니다. 교육 예산이 업계 평균 대비 낮은 수준입니다.</p><p class="text-[10px] text-amber-600 mt-3 pt-3 border-t border-zinc-50"><iconify-icon icon="solar:danger-triangle-bold" width="12" class="align-middle mr-1"></iconify-icon>역량 갭: 데이터 엔지니어링, ML Ops</p></div>
+<div class="p-5 rounded-xl border border-red-200 bg-red-50/30"><div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded bg-red-50 flex items-center justify-center"><iconify-icon icon="solar:users-group-rounded-bold" width="14" class="text-red-500"></iconify-icon></div><h3 class="text-sm font-bold text-navy-900">Staff</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-600 ml-auto">약함</span></div><p class="text-xs text-zinc-500 leading-relaxed">핵심 인재 이탈률 상승 추세. Career Path가 부재하며, 온보딩 기간이 길어 생산성 안정화에 시간이 소요됩니다.</p><p class="text-[10px] text-red-500 font-semibold mt-3 pt-3 border-t border-red-100"><iconify-icon icon="solar:danger-circle-bold" width="12" class="align-middle mr-1"></iconify-icon>우선 개선 필요</p></div>
+<div class="p-5 rounded-xl border border-zinc-100"><div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded bg-emerald-50 flex items-center justify-center"><iconify-icon icon="solar:flag-bold" width="14" class="text-emerald-600"></iconify-icon></div><h3 class="text-sm font-bold text-navy-900">Style</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 ml-auto">강함</span></div><p class="text-xs text-zinc-500 leading-relaxed">참여적 리더십이 정착되어 있으며, 수평적 커뮤니케이션 문화가 혁신을 촉진합니다. 실패 관용이 높아 실험 문화가 활발합니다.</p></div>
+<div class="p-5 rounded-xl border-2 border-gold-500/30 bg-gold-500/5"><div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded bg-navy-900 flex items-center justify-center"><iconify-icon icon="solar:star-bold" width="14" class="text-gold-500"></iconify-icon></div><h3 class="text-sm font-bold text-navy-900">Shared Values</h3><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 ml-auto">강함</span></div><p class="text-xs text-zinc-500 leading-relaxed">"고객 중심 혁신"이 전 조직에 공유되어 의사결정 기준으로 작동합니다. 채용과 평가에도 반영됩니다.</p><p class="text-[10px] text-navy-900 font-semibold mt-3 pt-3 border-t border-gold-500/20"><iconify-icon icon="solar:verified-check-bold" width="12" class="text-gold-500 align-middle mr-1"></iconify-icon>중심 요소</p></div>
+</div></div></div>
+<!-- S6: Alignment Matrix (Data Table) -->
+<div class="slide" data-slide="6">
+<div class="flex flex-col h-full px-12 py-10">
+<div class="flex items-center justify-between mb-5">
+<div><p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-1">Alignment Diagnostic</p><h2 class="text-2xl font-bold text-navy-900">정렬 진단 매트릭스</h2></div>
+<p class="text-[10px] text-zinc-400 bg-zinc-50 px-3 py-1.5 rounded"><iconify-icon icon="solar:info-circle-linear" width="12" class="align-middle mr-1"></iconify-icon>21쌍 중 14 강한 정렬, 5 부분 정렬, 2 불일치</p></div>
+<div class="flex-1 flex items-center"><table class="w-full text-[10px] border-collapse">
+<thead><tr><th class="bg-navy-900 text-white p-2 rounded-tl-lg"></th><th class="bg-navy-900 text-white p-2 font-semibold">Strategy</th><th class="bg-navy-900 text-white p-2 font-semibold">Structure</th><th class="bg-navy-900 text-white p-2 font-semibold">Systems</th><th class="bg-navy-900 text-white p-2 font-semibold">Skills</th><th class="bg-navy-900 text-white p-2 font-semibold">Staff</th><th class="bg-navy-900 text-white p-2 font-semibold">Style</th><th class="bg-navy-900 text-white p-2 rounded-tr-lg font-semibold">Values</th></tr></thead>
+<tbody>
+<tr><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Strategy</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-red-500 font-bold bg-red-50">&#x25CB;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td></tr>
+<tr class="bg-zinc-50/50"><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Structure</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td></tr>
+<tr><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Systems</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-red-500 font-bold bg-red-50">&#x25CB;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td></tr>
+<tr class="bg-zinc-50/50"><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Skills</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-red-500 font-bold bg-red-50">&#x25CB;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td></tr>
+<tr><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Staff</td><td class="p-2 text-center text-red-500 font-bold bg-red-50">&#x25CB;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td></tr>
+<tr class="bg-zinc-50/50"><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Style</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td></tr>
+<tr><td class="bg-navy-900/5 p-2 font-semibold text-navy-900">Values</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-amber-500 font-bold">&#x25D0;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="p-2 text-center text-emerald-600 font-bold">&#x25CF;</td><td class="bg-navy-900/10 p-2 text-center text-zinc-300">-</td></tr>
+</tbody></table></div>
+<div class="flex gap-6 mt-3"><span class="text-[10px] text-zinc-500"><span class="text-emerald-600 font-bold">&#x25CF;</span> 강한 정렬</span><span class="text-[10px] text-zinc-500"><span class="text-amber-500 font-bold">&#x25D0;</span> 부분 정렬</span><span class="text-[10px] text-zinc-500"><span class="text-red-500 font-bold">&#x25CB;</span> 불일치</span></div>
+</div></div>
+<!-- S7: Key Findings (Numbered List) -->
+<div class="slide" data-slide="7">
+<div class="flex flex-col h-full px-16 py-12">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-2">Key Findings</p>
+<h2 class="text-2xl font-bold text-navy-900 mb-8">핵심 발견사항</h2>
+<div class="space-y-6 flex-1">
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center flex-shrink-0"><span class="font-display text-2xl font-extrabold text-red-500">1</span></div>
+<div><h3 class="text-base font-bold text-navy-900 mb-1">인력 체계의 전략적 불일치</h3><p class="text-sm text-zinc-500 leading-relaxed">Staff 요소가 Strategy와 가장 낮은 정렬을 보입니다. 전략 실행에 필요한 인재 확보와 육성 체계가 전략 방향과 동기화되지 않아, 실행력 저하의 근본 원인으로 작용합니다.</p>
+<div class="flex gap-3 mt-2"><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-red-50 text-red-600">긴급도: 높음</span><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-600">영향도: 전사적</span></div></div></div>
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0"><span class="font-display text-2xl font-extrabold text-amber-500">2</span></div>
+<div><h3 class="text-base font-bold text-navy-900 mb-1">시스템-역량 간 기술 격차</h3><p class="text-sm text-zinc-500 leading-relaxed">Systems과 Skills 간 불일치가 확인됩니다. 현행 시스템이 요구하는 역량과 조직이 보유한 역량 사이에 갭이 존재하며, 특히 데이터 파이프라인과 분석 역량에서 두드러집니다.</p>
+<div class="flex gap-3 mt-2"><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-amber-50 text-amber-700">긴급도: 중간</span><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-600">영향도: 기술/운영</span></div></div></div>
+<div class="flex gap-6 items-start">
+<div class="w-12 h-12 rounded-xl bg-navy-900/5 border border-navy-900/10 flex items-center justify-center flex-shrink-0"><span class="font-display text-2xl font-extrabold text-navy-900">3</span></div>
+<div><h3 class="text-base font-bold text-navy-900 mb-1">공유 가치의 강력한 구심력</h3><p class="text-sm text-zinc-500 leading-relaxed">"고객 중심 혁신"이라는 공유 가치가 6개 요소 모두와 높은 정렬을 보이며, 조직 변화의 강력한 레버리지 포인트로 활용 가능합니다.</p>
+<div class="flex gap-3 mt-2"><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700">기회 요인</span><span class="text-[9px] font-bold px-2 py-0.5 rounded bg-zinc-100 text-zinc-600">영향도: 문화 전반</span></div></div></div>
+</div></div></div>
+<!-- S8: Recommendations (Top Bar + Body) -->
+<div class="slide" data-slide="8">
+<div class="flex flex-col h-full">
+<div class="h-16 bg-navy-900 flex items-center px-12">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500">Strategic Recommendations</p>
+<div class="w-8 h-0.5 bg-gold-500 mx-4"></div>
+<p class="text-sm font-semibold text-white">권고안</p></div>
+<div class="flex-1 px-12 py-8 flex gap-8">
+<div class="flex-1">
+<h3 class="text-base font-bold text-navy-900 mb-1">Quick Wins</h3>
+<p class="text-[10px] text-zinc-400 mb-4">30일 내 실행 가능</p>
+<div class="space-y-3">
+<div class="p-4 rounded-lg border border-zinc-100 hover:border-gold-500/30 transition-colors">
+<div class="flex items-center gap-2 mb-2"><iconify-icon icon="solar:users-group-rounded-bold" width="16" class="text-red-500"></iconify-icon><h4 class="text-sm font-semibold text-navy-900">핵심 인재 리텐션 프로그램</h4></div>
+<p class="text-xs text-zinc-500 leading-relaxed">이탈 위험 상위 인재 식별 및 1:1 면담 실시. 개인별 성장 경로를 수립하여 즉각적인 이탈 방지</p>
+<p class="text-[10px] text-zinc-400 mt-2"><iconify-icon icon="solar:calendar-bold" width="11" class="align-middle mr-1"></iconify-icon>2주 내 착수</p></div>
+<div class="p-4 rounded-lg border border-zinc-100 hover:border-gold-500/30 transition-colors">
+<div class="flex items-center gap-2 mb-2"><iconify-icon icon="solar:database-bold" width="16" class="text-amber-500"></iconify-icon><h4 class="text-sm font-semibold text-navy-900">데이터 통합 태스크포스</h4></div>
+<p class="text-xs text-zinc-500 leading-relaxed">부서별 분산된 데이터를 통합 관리할 크로스펑셔널 TF 구성</p>
+<p class="text-[10px] text-zinc-400 mt-2"><iconify-icon icon="solar:calendar-bold" width="11" class="align-middle mr-1"></iconify-icon>4주 내 완료</p></div>
+</div></div>
+<div class="w-px bg-zinc-100"></div>
+<div class="flex-1">
+<h3 class="text-base font-bold text-navy-900 mb-1">Long-term Initiatives</h3>
+<p class="text-[10px] text-zinc-400 mb-4">6~12개월 전략 과제</p>
+<div class="space-y-3">
+<div class="p-4 rounded-lg border border-zinc-100 hover:border-gold-500/30 transition-colors">
+<div class="flex items-center gap-2 mb-2"><iconify-icon icon="solar:graduation-cap-bold" width="16" class="text-navy-900"></iconify-icon><h4 class="text-sm font-semibold text-navy-900">역량 개발 아카데미</h4></div>
+<p class="text-xs text-zinc-500 leading-relaxed">AI/데이터 분석 중심의 사내 교육 프로그램 체계화. 교육 예산을 매출의 2.5%까지 점진적 확대</p>
+<p class="text-[10px] text-zinc-400 mt-2"><iconify-icon icon="solar:clock-circle-bold" width="11" class="align-middle mr-1"></iconify-icon>6개월 설계 + 12개월 운영</p></div>
+<div class="p-4 rounded-lg border border-zinc-100 hover:border-gold-500/30 transition-colors">
+<div class="flex items-center gap-2 mb-2"><iconify-icon icon="solar:settings-bold" width="16" class="text-navy-900"></iconify-icon><h4 class="text-sm font-semibold text-navy-900">통합 운영 시스템 구축</h4></div>
+<p class="text-xs text-zinc-500 leading-relaxed">ERP/CRM/데이터 분석 플랫폼 통합 로드맵 수립 및 단계적 구축</p>
+<p class="text-[10px] text-zinc-400 mt-2"><iconify-icon icon="solar:clock-circle-bold" width="11" class="align-middle mr-1"></iconify-icon>12개월 프로젝트</p></div>
+</div></div>
+</div></div></div>
+<!-- S9: Roadmap (Timeline) -->
+<div class="slide" data-slide="9">
+<div class="flex flex-col h-full px-12 py-10">
+<p class="text-[10px] font-bold uppercase tracking-[.15em] text-gold-500 mb-2">Implementation Roadmap</p>
+<h2 class="text-2xl font-bold text-navy-900 mb-8">실행 로드맵</h2>
+<div class="flex-1 flex items-center">
+<div class="flex gap-0 w-full">
+<!-- Phase 1 -->
+<div class="flex-1 relative">
+<div class="h-1 bg-gold-500 rounded-l-full"></div>
+<div class="w-4 h-4 rounded-full bg-gold-500 border-4 border-white shadow-sm absolute -top-1.5 left-0"></div>
+<div class="mt-6">
+<span class="text-[9px] font-bold uppercase tracking-wider text-gold-500">Phase 1</span>
+<h4 class="text-sm font-bold text-navy-900 mt-1 mb-2">긴급 안정화</h4>
+<p class="text-[10px] text-zinc-400 mb-3">1~3개월</p>
+<div class="space-y-2">
+<div class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-gold-500 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">핵심 인재 리텐션 프로그램 실행</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-gold-500 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">데이터 통합 TF 출범</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:check-circle-bold" width="14" class="text-gold-500 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">역량 갭 상세 진단</p></div>
+</div></div></div>
+<!-- Phase 2 -->
+<div class="flex-1 relative">
+<div class="h-1 bg-navy-900/20"></div>
+<div class="w-4 h-4 rounded-full bg-navy-900/20 border-4 border-white absolute -top-1.5 left-0"></div>
+<div class="mt-6">
+<span class="text-[9px] font-bold uppercase tracking-wider text-zinc-400">Phase 2</span>
+<h4 class="text-sm font-bold text-navy-900 mt-1 mb-2">구조적 개선</h4>
+<p class="text-[10px] text-zinc-400 mb-3">3~6개월</p>
+<div class="space-y-2">
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">역량 개발 아카데미 설계</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">Career Path 체계 수립</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">시스템 통합 PoC</p></div>
+</div></div></div>
+<!-- Phase 3 -->
+<div class="flex-1 relative">
+<div class="h-1 bg-navy-900/10 rounded-r-full"></div>
+<div class="w-4 h-4 rounded-full bg-navy-900/10 border-4 border-white absolute -top-1.5 left-0"></div>
+<div class="mt-6">
+<span class="text-[9px] font-bold uppercase tracking-wider text-zinc-400">Phase 3</span>
+<h4 class="text-sm font-bold text-navy-900 mt-1 mb-2">전사 최적화</h4>
+<p class="text-[10px] text-zinc-400 mb-3">6~12개월</p>
+<div class="space-y-2">
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">통합 운영 시스템 본격 구축</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">아카데미 1기 운영</p></div>
+<div class="flex items-start gap-2"><iconify-icon icon="solar:circle-bold" width="14" class="text-zinc-300 mt-0.5 flex-shrink-0"></iconify-icon><p class="text-xs text-zinc-600">7S 재진단 및 조정</p></div>
+</div></div></div>
+</div></div></div></div>
+<!-- S10: CTA / Closing -->
+<div class="slide" data-slide="10">
+<div class="flex flex-col items-center justify-center w-full h-full px-16 text-center relative">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gold-500/5"></div>
+<div class="relative z-10">
+<iconify-icon icon="solar:star-bold" width="32" class="text-gold-500 mb-4"></iconify-icon>
+<h2 class="font-display text-4xl font-extrabold text-navy-900 tracking-tight mb-4">분석을 넘어, 실행으로</h2>
+<p class="text-base text-zinc-500 leading-relaxed max-w-md mx-auto mb-8">McKinsey 7S 분석 결과를 바탕으로<br>조직의 전략적 정렬을 최적화하세요</p>
+<div class="flex flex-col items-center gap-4">
+<div class="flex items-center gap-6 text-xs text-zinc-400">
+<span class="flex items-center gap-1.5"><iconify-icon icon="solar:document-text-bold" width="14" class="text-zinc-400"></iconify-icon>분석 자료 기반</span>
+<span class="flex items-center gap-1.5"><iconify-icon icon="solar:calendar-bold" width="14" class="text-zinc-400"></iconify-icon>2026년 4월</span>
+<span class="flex items-center gap-1.5"><iconify-icon icon="solar:link-bold" width="14" class="text-zinc-400"></iconify-icon>createnova.netlify.app</span>
 </div>
-
-<!-- S4: Hard S -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Hard Elements</div>
-        <h2>Strategy<br>Structure<br>Systems</h2>
-      </div>
-      <div class="meta">04 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">Hard S <span class="gold">상세 분석</span></h2>
-      <div class="grid3">
-        <div class="card gold-top">
-          <div class="chip chip-green">● 강한 정렬</div>
-          <h3>Strategy</h3>
-          <ul>
-            <li>AI-first 분석 자동화</li>
-            <li>프리미엄 포지셔닝</li>
-            <li>Phase별 단계적 확장</li>
-            <li>이메일 기반 리드 선행</li>
-          </ul>
-        </div>
-        <div class="card red-top">
-          <div class="chip chip-red">○ 불일치</div>
-          <h3>Structure</h3>
-          <ul>
-            <li>1인 운영 — 속도는 빠르나</li>
-            <li>핵심인력 집중 리스크</li>
-            <li>확장 시 구조 재설계 필요</li>
-            <li>⚠ 전략 규모와 충돌</li>
-          </ul>
-        </div>
-        <div class="card gold-top">
-          <div class="chip chip-green">● 강한 정렬</div>
-          <h3>Systems</h3>
-          <ul>
-            <li>Netlify + GitHub 배포</li>
-            <li>EmailOctopus 자동화</li>
-            <li>Claude API 분석 파이프</li>
-            <li>비용 효율적 서버리스</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="w-12 h-0.5 bg-gold-500 mt-4"></div>
+<p class="text-[10px] text-zinc-400 mt-2">Powered by Createnova</p>
+</div></div></div></div>
+</div><!-- /wrap -->
+<div class="nav-controls">
+<button class="nav-btn" onclick="go(-1)">&larr;</button>
+<button class="nav-btn" onclick="go(1)">&rarr;</button>
 </div>
-<!-- S5: Soft S -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Soft Elements</div>
-        <h2>Skills · Staff<br>Style · Shared<br>Values</h2>
-      </div>
-      <div class="meta">05 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">Soft S <span class="gold">상세 분석</span></h2>
-      <div class="grid2">
-        <div class="card">
-          <div class="chip chip-yellow">◐ 부분 정렬</div>
-          <h3>Skills — 역량</h3>
-          <ul><li>프롬프트 엔지니어링 강점</li><li>디자인 시스템 설계 역량</li><li>⚠ 영업·마케팅 역량 부족</li></ul>
-        </div>
-        <div class="card">
-          <div class="chip chip-yellow">◐ 부분 정렬</div>
-          <h3>Staff — 인력</h3>
-          <ul><li>1인 창업 + AI 파트너</li><li>민첩한 의사결정 가능</li><li>⚠ 단일 집중 리스크</li></ul>
-        </div>
-        <div class="card">
-          <div class="chip chip-green">● 강한 정렬</div>
-          <h3>Style — 리더십</h3>
-          <ul><li>실험적·속도 중심 결정</li><li>데이터 기반 피벗 유연</li><li>실패 허용, 빠른 학습</li></ul>
-        </div>
-        <div class="card" style="border-top-color:#c9a84c;border-left:2px solid #c9a84c">
-          <div class="chip" style="background:#fef3e2;color:#92400e">★ 핵심 요소</div>
-          <h3>Shared Values</h3>
-          <ul><li>"데이터로 더 나은 결정"</li><li>접근성 · 속도 · 품질</li><li>6개 요소 정렬의 중심</li></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S6: 정렬 매트릭스 -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Alignment Diagnosis</div>
-        <h2>정렬 진단<br>매트릭스</h2>
-        <div style="margin-top:16px;font-size:11px;color:rgba(255,255,255,.5);line-height:1.8">빨강 = 불일치<br>노랑 = 부분<br>초록 = 강함</div>
-      </div>
-      <div class="meta">06 / 10</div>
-    </div>
-    <div class="main" style="justify-content:center">
-      <table>
-        <tr><th></th><th>Strategy</th><th>Structure</th><th>Systems</th><th>Skills</th><th>Staff</th><th>Style</th><th>Values</th></tr>
-        <tr><th>Strategy</th><td class="self">—</td><td class="miss">○</td><td class="ok">●</td><td class="mid">◐</td><td class="miss">○</td><td class="ok">●</td><td class="ok">●</td></tr>
-        <tr><th>Structure</th><td class="miss">○</td><td class="self">—</td><td class="mid">◐</td><td class="miss">○</td><td class="mid">◐</td><td class="mid">◐</td><td class="mid">◐</td></tr>
-        <tr><th>Systems</th><td class="ok">●</td><td class="mid">◐</td><td class="self">—</td><td class="ok">●</td><td class="mid">◐</td><td class="ok">●</td><td class="ok">●</td></tr>
-        <tr><th>Skills</th><td class="mid">◐</td><td class="miss">○</td><td class="ok">●</td><td class="self">—</td><td class="mid">◐</td><td class="ok">●</td><td class="ok">●</td></tr>
-        <tr><th>Staff</th><td class="miss">○</td><td class="mid">◐</td><td class="mid">◐</td><td class="mid">◐</td><td class="self">—</td><td class="ok">●</td><td class="ok">●</td></tr>
-        <tr><th>Style</th><td class="ok">●</td><td class="mid">◐</td><td class="ok">●</td><td class="ok">●</td><td class="ok">●</td><td class="self">—</td><td class="ok">●</td></tr>
-        <tr><th>Values</th><td class="ok">●</td><td class="mid">◐</td><td class="ok">●</td><td class="ok">●</td><td class="ok">●</td><td class="ok">●</td><td class="self">—</td></tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- S7: 핵심 발견 -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Key Findings</div>
-        <h2>핵심 발견<br>Top 3</h2>
-      </div>
-      <div class="meta">07 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">우선 개선이 필요한 <span class="gold">3가지</span></h2>
-      <div class="grid3">
-        <div class="card red-top">
-          <div class="chip chip-red">긴급 · HIGH</div>
-          <h3>① Structure 불일치</h3>
-          <p class="body" style="margin-top:8px;font-size:13px">1인 구조가 전략 규모와 충돌. Strategy·Staff 2개 요소와 동시 불일치. 스케일업 병목.</p>
-        </div>
-        <div class="card" style="border-top-color:#f59e0b">
-          <div class="chip chip-yellow">중요 · MED</div>
-          <h3>② 마케팅 역량 갭</h3>
-          <p class="body" style="margin-top:8px;font-size:13px">기술·디자인 역량 대비 영업 실행력 부족. Skills-Strategy 정렬 지연 원인.</p>
-        </div>
-        <div class="card gold-top">
-          <div class="chip chip-green">기회 · OPP</div>
-          <h3>③ Systems 강점</h3>
-          <p class="body" style="margin-top:8px;font-size:13px">서버리스+AI 스택이 비용 우위 제공. 빠른 실험의 기반으로 전략 실행 가속 가능.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S8: 권고안 -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Recommendations</div>
-        <h2>실행<br>권고안</h2>
-      </div>
-      <div class="meta">08 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">Quick Win <span class="gold">&</span> Long-term</h2>
-      <div class="grid2">
-        <div>
-          <div class="tag" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0f2167;margin-bottom:12px">Quick Win — 30일 내</div>
-          <div class="card" style="margin-bottom:12px"><h3 style="font-size:14px;margin-bottom:4px">① 프로세스 문서화 SOP</h3><p class="body" style="font-size:12px">핵심 업무 표준화 → 단일인력 의존도 감소</p></div>
-          <div class="card" style="margin-bottom:12px"><h3 style="font-size:14px;margin-bottom:4px">② 이메일 온보딩 자동화</h3><p class="body" style="font-size:12px">다운로드 후 5-step 드립 시퀀스 구축</p></div>
-          <div class="card"><h3 style="font-size:14px;margin-bottom:4px">③ 콘텐츠 마케팅 루틴</h3><p class="body" style="font-size:12px">주 2회 인사이트 발행 → 유기 트래픽</p></div>
-        </div>
-        <div>
-          <div class="tag" style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0f2167;margin-bottom:12px">Long-term — 6~12개월</div>
-          <div class="card" style="margin-bottom:12px"><h3 style="font-size:14px;margin-bottom:4px">① 파트타임 마케터 채용</h3><p class="body" style="font-size:12px">Structure 강화 → 전략-인력 정렬</p></div>
-          <div class="card" style="margin-bottom:12px"><h3 style="font-size:14px;margin-bottom:4px">② 파트너십 채널 구축</h3><p class="body" style="font-size:12px">컨설팅펌·액셀러레이터 제휴</p></div>
-          <div class="card"><h3 style="font-size:14px;margin-bottom:4px">③ 글로벌 영문 출시</h3><p class="body" style="font-size:12px">TAM 10배 확장 — 영문 버전</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S9: 로드맵 -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar">
-      <div class="logo">Createnova</div>
-      <div>
-        <div class="slide-label">Execution Roadmap</div>
-        <h2>실행<br>로드맵</h2>
-      </div>
-      <div class="meta">09 / 10</div>
-    </div>
-    <div class="main">
-      <h2 class="main-h">3단계 <span class="gold">실행 계획</span></h2>
-      <div class="timeline">
-        <div class="tl-item">
-          <div class="tl-line"></div>
-          <div class="tl-dot"></div>
-          <div class="tl-phase">Phase 1 · 1~3개월</div>
-          <div class="tl-body">Free 콘텐츠 배포<br>이메일 500명 확보<br>온보딩 자동화<br>SOP 문서화</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-line"></div>
-          <div class="tl-dot inactive"></div>
-          <div class="tl-phase">Phase 2 · 3~6개월</div>
-          <div class="tl-body">Pro 플랜 출시<br>전환율 3% 목표<br>첫 파트너십<br>콘텐츠 루틴 확립</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-line"></div>
-          <div class="tl-dot inactive"></div>
-          <div class="tl-phase">Phase 3 · 6~12개월</div>
-          <div class="tl-body">영문 버전 출시<br>첫 채용<br>MRR 1000만원<br>Enterprise 파일럿</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- S10: CTA -->
-<div class="slide">
-  <div class="layout">
-    <div class="sidebar" style="background:#c9a84c">
-      <div class="logo" style="color:rgba(0,0,0,.4)">Createnova</div>
-      <div>
-        <div class="slide-label" style="color:rgba(0,0,0,.5)">Get Started</div>
-        <h2 style="color:#1a1a2e">지금<br>시작하세요</h2>
-      </div>
-      <div class="meta" style="color:rgba(0,0,0,.4)">10 / 10</div>
-    </div>
-    <div class="main" style="justify-content:center">
-      <div class="tag">Createnova — AI 전략 분석</div>
-      <h1 style="font-size:36px">McKinsey · BCG · Porter's<br>모든 프레임워크를<br><span class="gold">AI가 자동 분석</span>합니다</h1>
-      <div class="accent-line"></div>
-      <p class="body" style="margin-bottom:24px">자료를 붙여넣기만 하면 컨설팅급 슬라이드가 완성됩니다.</p>
-      <a class="cta-btn" href="https://createnova.netlify.app">무료로 시작하기 →</a>
-    </div>
-  </div>
-</div>
-
-</div>
+<div class="slide-num" id="sn">01 / 10</div>
+<div class="progress" id="pb"></div>
 <script>
-let cur=0,tot=10;
-function go(d){
-  let s=document.querySelectorAll('.slide');
-  s[cur].classList.remove('active');
-  cur=Math.max(0,Math.min(tot-1,cur+d));
-  s[cur].classList.add('active');
-  document.getElementById('snum').textContent=String(cur+1).padStart(2,'0')+' / '+String(tot).padStart(2,'0');
-  document.getElementById('prog').style.width=((cur+1)/tot*100)+'%';
-}
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' ')go(1);
-  if(e.key==='ArrowLeft')go(-1);
-  if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();}
-});
-</script></body></html>
+let c=1,t=10;
+function go(d){let n=c+d;if(n<1||n>t)return;document.querySelector(`[data-slide="${c}"]`).classList.remove('active');c=n;document.querySelector(`[data-slide="${c}"]`).classList.add('active');document.getElementById('sn').textContent=String(c).padStart(2,'0')+' / '+String(t).padStart(2,'0');document.getElementById('pb').style.width=(c/t*100)+'%';}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key==='f'){document.documentElement.requestFullscreen?.();}});
+document.getElementById('pb').style.width=(1/t*100)+'%';
+</script>
+</body></html>
