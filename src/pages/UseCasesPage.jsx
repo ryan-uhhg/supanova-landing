@@ -74,7 +74,7 @@ export default function UseCasesPage() {
       <PageHero
         eyebrow="Use Cases"
         headline={'기획 실무의 5가지\n핵심 시나리오'}
-        subCopy="신사업 기획, 경쟁사 분석, IR 자료, 해외 진출, 월간 보고 — 귀하의 업무에서 Supanova가 어떻게 작동하는지 직접 확인하십시오."
+        subCopy="신사업 기획, 경쟁사 분석, IR 자료, 해외 진출, 월간 보고 — 귀하의 업무에서 Createnova가 어떻게 작동하는지 직접 확인하십시오."
       />
 
       <section className="w-full py-4 pb-24">
@@ -122,7 +122,7 @@ export default function UseCasesPage() {
                     <div className={`rounded-xl border p-5 ${c.color === 'gold' ? 'bg-gold/[0.03] border-gold/15' : c.color === 'emerald-accent' ? 'bg-emerald-accent/[0.03] border-emerald-accent/15' : 'bg-accent/[0.03] border-accent/15'}`}>
                       <div className="flex items-center gap-2 mb-4">
                         <div className={`w-1.5 h-1.5 rounded-full ${col.icon.replace('text-','bg-')}`} />
-                        <span className={`text-[11px] font-semibold tracking-widest uppercase ${col.icon}`}>Supanova</span>
+                        <span className={`text-[11px] font-semibold tracking-widest uppercase ${col.icon}`}>Createnova</span>
                         <span className={`ml-auto font-bold text-[15px] ${col.icon}`}>{c.after.time}</span>
                       </div>
                       <ul className="space-y-2">

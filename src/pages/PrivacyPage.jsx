@@ -6,18 +6,18 @@ export default function PrivacyPage() {
       <div className="mb-10 p-5 rounded-2xl border border-emerald-accent/20 bg-emerald-accent/[0.03]">
         <p className="text-emerald-accent text-[13px] font-semibold mb-2">데이터 처리 투명성 선언</p>
         <p className="text-silver text-[13px] leading-[1.8]">
-          Supanova 앱은 원본 파일을 업로드하지 않습니다. 파이썬이 로컬에서 텍스트만 추출하고,
-          추출된 텍스트만 Claude API(Anthropic)로 전송합니다. Supanova 자체 서버에는 어떠한
+          Createnova 앱은 원본 파일을 업로드하지 않습니다. 파이썬이 로컬에서 텍스트만 추출하고,
+          추출된 텍스트만 Claude API(Anthropic)로 전송합니다. Createnova 자체 서버에는 어떠한
           데이터도 전송되지 않습니다.
         </p>
       </div>
 
       <LegalSection title="제1조 (수집하는 개인정보)">
-        <p>Supanova는 서비스 제공을 위해 다음의 최소한의 개인정보를 수집합니다.</p>
+        <p>Createnova는 서비스 제공을 위해 다음의 최소한의 개인정보를 수집합니다.</p>
         <ul className="space-y-2 mt-2 list-none">
           {[
             '이메일 주소 — 제품 다운로드 링크 전달 및 기술 지원',
-            '결제 정보 — PG사(토스페이먼츠/KG이니시스)를 통해 처리하며, Supanova는 카드 정보를 직접 저장하지 않습니다',
+            '결제 정보 — PG사(토스페이먼츠/KG이니시스)를 통해 처리하며, Createnova는 카드 정보를 직접 저장하지 않습니다',
             '이름 또는 닉네임 — 기술 지원 요청 시에 한함',
           ].map((t) => (
             <li key={t} className="flex items-start gap-2">
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
           {[
             '앱 사용 통계 (실행 횟수, 사용 시간 등)',
             'IP 주소, 기기 정보, 위치 정보',
-            'Supanova 자체 서버로의 어떠한 데이터 전송',
+            'Createnova 자체 서버로의 어떠한 데이터 전송',
           ].map((t) => (
             <li key={t} className="flex items-start gap-2 text-silver">
               <span className="text-ash/50 mt-1 shrink-0">✕</span>{t}
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
       </LegalSection>
 
       <LegalSection title="제3조 (제3자 제공)">
-        <p>Supanova는 다음의 경우에만 제3자에게 정보를 제공합니다.</p>
+        <p>Createnova는 다음의 경우에만 제3자에게 정보를 제공합니다.</p>
         <ul className="space-y-2 mt-2 list-none">
           {[
             'AI 분석 처리: Anthropic (Claude API) — 전처리된 텍스트만 전송, API 약관상 모델 훈련 미사용',
@@ -90,18 +90,18 @@ export default function PrivacyPage() {
         <p>귀하는 언제든지 수집된 개인정보의 열람, 정정, 삭제, 처리정지를 요청할 수 있습니다.</p>
         <p>
           요청 방법:{' '}
-          <a href="mailto:support@supanova.co" className="text-accent hover:underline">
-            support@supanova.co
+          <a href="mailto:support@createnova.co" className="text-accent hover:underline">
+            support@createnova.co
           </a>
         </p>
       </LegalSection>
 
       <LegalSection title="제6조 (개인정보 보호책임자)">
-        <p>Supanova 개인정보 보호책임자: Supanova 파운더</p>
+        <p>Createnova 개인정보 보호책임자: Createnova 파운더</p>
         <p>
           연락처:{' '}
-          <a href="mailto:support@supanova.co" className="text-accent hover:underline">
-            support@supanova.co
+          <a href="mailto:support@createnova.co" className="text-accent hover:underline">
+            support@createnova.co
           </a>
         </p>
       </LegalSection>

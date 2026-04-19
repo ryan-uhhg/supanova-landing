@@ -16,7 +16,7 @@ export default function RefundPage() {
             작동하지 않으면, 전액 돌려드립니다.
           </h2>
           <p className="text-silver text-[14px] leading-[1.8] max-w-md mx-auto text-center">
-            질문하지 않습니다. 조건을 달지 않습니다. 귀하의 환경에서 Supanova가 정상 작동하지
+            질문하지 않습니다. 조건을 달지 않습니다. 귀하의 환경에서 Createnova가 정상 작동하지
             않으면, 결제 금액 전액을 환불해 드립니다.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function RefundPage() {
       <LegalSection title="환불 절차">
         <div className="space-y-3">
           {[
-            { step: '1', title: '환불 요청 이메일 발송', desc: 'support@supanova.co로 구매일, 주문번호, 발생한 문제를 기재하여 발송' },
+            { step: '1', title: '환불 요청 이메일 발송', desc: 'support@createnova.co로 구매일, 주문번호, 발생한 문제를 기재하여 발송' },
             { step: '2', title: '기술 지원 시도', desc: '24시간 이내 기술 지원팀이 문제를 확인하고 해결을 시도합니다' },
             { step: '3', title: '환불 처리', desc: '해결 불가 판정 시 영업일 기준 3일 이내 전액 환불 처리' },
           ].map((item) => (
@@ -93,8 +93,8 @@ export default function RefundPage() {
       <div className="mt-12 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02]">
         <p className="text-ash text-[12.5px]">
           환불 문의:{' '}
-          <a href="mailto:support@supanova.co" className="text-accent hover:underline">
-            support@supanova.co
+          <a href="mailto:support@createnova.co" className="text-accent hover:underline">
+            support@createnova.co
           </a>
         </p>
       </div>

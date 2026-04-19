@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import PageHero from '../components/shared/PageHero';
 import AccordionFAQ from '../components/shared/AccordionFAQ';
+import MailingForm from '../components/MailingForm';
 
 const tiers = [
   {
@@ -87,7 +88,7 @@ const matrixRows = [
 const faqItems = [
   {
     q: '구독이 아닌 건 정말입니까?',
-    a: 'Supanova는 SaaS 구독 모델이 아닙니다. 한 번 결제하시면 영구 라이선스가 부여되며, 추가 비용은 일절 발생하지 않습니다. 모든 미래 업데이트도 무료로 제공됩니다.',
+    a: 'Createnova는 SaaS 구독 모델이 아닙니다. 한 번 결제하시면 영구 라이선스가 부여되며, 추가 비용은 일절 발생하지 않습니다. 모든 미래 업데이트도 무료로 제공됩니다.',
   },
   {
     q: '얼리버드 특가는 언제 종료됩니까?',
@@ -103,7 +104,7 @@ const faqItems = [
   },
   {
     q: '법인 대량 구매 할인이 있습니까?',
-    a: '5라이선스 이상 대량 구매 시 별도 법인 할인을 제공합니다. support@supanova.co로 문의하여 주십시오.',
+    a: '5라이선스 이상 대량 구매 시 별도 법인 할인을 제공합니다. support@createnova.co로 문의하여 주십시오.',
   },
   {
     q: '환불 조건이 무엇입니까?',
@@ -115,7 +116,7 @@ const faqItems = [
   },
   {
     q: '세금계산서 발급이 가능합니까?',
-    a: '네. 법인 또는 사업자 구매 시 세금계산서를 발급해 드립니다. 결제 완료 후 support@supanova.co로 사업자등록증 사본과 함께 요청하여 주십시오.',
+    a: '네. 법인 또는 사업자 구매 시 세금계산서를 발급해 드립니다. 결제 완료 후 support@createnova.co로 사업자등록증 사본과 함께 요청하여 주십시오.',
   },
 ];
 
@@ -168,6 +169,27 @@ export default function PricingPage() {
                 )}
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Free plan mailing signup */}
+      <section id="free-email" className="w-full py-16 border-t border-white/[0.04]">
+        <div className="section-container max-w-2xl">
+          <div className="card-bezel">
+            <div className="card-bezel-inner text-center py-10 flex flex-col items-center gap-6">
+              <div className="w-12 h-12 rounded-2xl bg-accent/[0.08] border border-accent/20 flex items-center justify-center">
+                <Icon icon="solar:letter-bold-duotone" className="w-6 h-6 text-accent-bright" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-snow mb-2">무료 프레임워크 패키지 받기</h3>
+                <p className="text-silver text-[13px] leading-[1.8]">
+                  이메일 주소만 입력하시면 사고 프레임워크 프롬프트 5종을 즉시 발송해 드립니다.<br />
+                  신규 프레임워크 업데이트도 가장 먼저 받아보실 수 있습니다.
+                </p>
+              </div>
+              <MailingForm />
+            </div>
           </div>
         </div>
       </section>
